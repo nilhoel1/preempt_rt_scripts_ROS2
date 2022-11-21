@@ -70,13 +70,14 @@ scripts/config --disable SYSTEM_REVOCATION_KEYS
 # Build the kernel.
 #NUMBER_CPUS=100
 #CONCURRENCY_LEVEL=$NUMBER_CPUS make-kpkg --rootcmd fakeroot --initrd kernel_image kernel_headers
-make -j200 deb-pkg
+make -j30 deb-pkg
 
 # Install the build kernel.
 sudo dpkg -i ../*.deb
 
 
 # Modify the grub setting: comment out GRUB_HIDDEN_TIMEOUT and update grub.
+# Add: mitigations=auto,nosmt ; nohz_full=#-# ; isolcpu=#-# ; rcu_nocbs=0 ; audit=0 ; watchdog=0 ; skew_tick=1
 sudo sed -i 's/GRUB_HIDDEN_TIMEOUT/# GRUB_HIDDEN_TIMEOUT/g' /etc/default/grub
 sudo update-grub
 

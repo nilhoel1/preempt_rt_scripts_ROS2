@@ -2,6 +2,16 @@
 
 Scripts for building and setting up linux-preempt_rt on Ubuntu 20.04 and ros2.
 
+## Setting up Grub for CPU isolatio
+The following kernel parameters have to be set ti isolate # cores.
+
+
+Add: mitigations=auto,nosmt ; nohz_full=#-# ; isolcpu=#-# ; rcu_nocbs=0 ; audit=0 ; watchdog=0 ; skew_tick=1n
+
+An example for this can be found in the grub.example, wher CPUs 2 and 3 are isolated and all interrupt are handed to CPU 0.
+
+Following is the Readme from the forked Repository.
+
 ## Getting started
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
