@@ -8,6 +8,12 @@ The following kernel parameters have to be set ti isolate # cores.
 
 Add: mitigations=auto,nosmt ; nohz_full=#-# ; isolcpu=#-# ; rcu_nocbs=0 ; audit=0 ; watchdog=0 ; skew_tick=1n
 
+This can be done by adding them to /etc/default/grub and updating grub afterwards with:
+
+```bash
+sudo grub-mkconfig
+```
+
 An example for this can be found in the [grub.example](https://github.com/nilhoel1/preempt_rt_scripts_ROS2/blob/main/grub.example#L11), wher CPUs 2 and 3 are isolated and all interrupt are handed to CPU 0.
 
 Following is the Readme from the forked Repository.
